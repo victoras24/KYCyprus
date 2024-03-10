@@ -1,10 +1,11 @@
-import express from 'express';
-import pkg from 'pg';
-const { Pool } = pkg;
-import cors from 'cors';
+import express from 'express'
+import pkg from 'pg'
+const { Pool } = pkg
+import cors from 'cors'
 
 const app = express()
 const port = 3000
+
 
 const corsOptions = {
     origin: 'http://localhost:5173'
@@ -12,17 +13,16 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
-// Set up PostgreSQL connection pool
 const pool = new Pool({
-    user: 'esaakidis',
-    host: process.env.HOST,
-    database: process.env.DATABASE,
-    password: process.env.PASSWORD,
-    port: process.env.PORT
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT
 })
 
 app.get('/api/organisations', async (req, res) => {
-    const keyword = req.query.keyword
+    const keyword = req.query.keyword // Get the keyword from the query parameters
 
     try {
         const query = `
