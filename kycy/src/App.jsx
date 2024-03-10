@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from "./components/Layout"
 import Search from "./pages/Search"
-import './styles/index.css'
+import '../index.css'
 import { Routes, Route, HashRouter } from "react-router-dom"
 
 export default function App() {
